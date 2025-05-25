@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Unnamed Website</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      background: #fff;
+      color: #000;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 0 10px;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .header a {
+      text-decoration: none;
+      color: inherit;
+    }
+    h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    #toggleDark {
+      padding: 5px 10px;
+      font-size: 14px;
+      cursor: pointer;
+      border: none;
+      background: #ddd;
+      border-radius: 4px;
+    }
+    .az-menu {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 5px;
+      margin-bottom: 20px;
+    }
+    .az-menu button {
+      background: none;
+      border: 1px solid #999;
+      padding: 3px 6px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    #search {
+      width: 100%;
+      padding: 8px;
+      font-size: 14px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .buttons button {
+      margin-right: 10px;
+      padding: 5px 10px;
+      font-size: 14px;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      background: #eee;
+      border-radius: 4px;
+    }
+    .buttons button:last-child {
+      margin-right: 0;
+    }
+    .accordion-button {
+      background: none;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 100%;
+      text-align: left;
+      padding: 5px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      min-height: 64px;
+      margin-bottom: 5px;
+    }
+    .accordion-button:hover {
+      background: #f0f0f0;
+    }
+    .arrow {
+      margin-right: 10px;
+      font-size: 12px;
+      transition: transform 0.2s;
+    }
+    .accordion-button.active .arrow {
+      transform: rotate(90deg);
+    }
+    .ach-icon {
+      width: 64px;
+      height: 64px;
+      margin-right: 10px;
+    }
+    .label {
+      flex-grow: 1;
+    }
+    .checkbox {
+      transform: scale(1.2);
+      cursor: pointer;
+    }
+    .accordion-content {
+      display: none;
+      padding-left: 25px;
+      margin-bottom: 5px;
+    }
+    .highlight {
+      background-color: yellow;
+      font-weight: bold;
+    }
+    #main-title {
+      text-align: center;
+      padding-bottom: 10px;
+    }
+    body.dark {
+      background: #1b1b1b;
+      color: #ddd;
+    }
+    body.dark .accordion-button {
+      border-color: #555;
+    }
+    body.dark .accordion-button:hover {
+      background: #2a2a2a;
+    }
+    body.dark .az-menu button {
+      border-color: #555;
+    }
+    body.dark .az-menu:hover button,
+    body.dark #search,
+    body.dark #toggleDark,
+    body.dark button {
+      background: #333;
+      color: #ddd;
+      border: 1px solid #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <a href="index.html"><h1>Unnamed Website</h1></a>
+      <button id="toggleDark">Toggle Dark Mode</button>
+    </div>
+
+    <div class="az-menu" id="azMenu"></div>
+
+    <input type="text" id="search" placeholder="Search achievements...">
+    <div class="buttons">
+      <div class="left-buttons">
+        <button id="expandAll">Expand All</button>
+        <button id="collapseAll">Collapse All</button>
+      </div>
+      <div class="right-buttons">
+        <button id="checkAll">Check All</button>
+        <button id="clearAll">Clear All</button>
+      </div>
+    </div>
+
+    <div class="accordion" id="accordionRoot">
+<!-- Accordion Content -->
+<div class="accordion">
+    <div id="main-title">
+      <h1>Unnamed Website</h1>
+    </div>
+    <!-- Section 1 -->
+    <button class="accordion-button">
+      <span class="arrow">▶</span>
+      <img class="ach-icon" src="" alt="Icon">
+      <span class="label">Section 1</span>
+      <input id="checkbox-section-1" type="checkbox" class="checkbox">
+    </button>
+    <div class="accordion-content">
+      <!-- Subsection 1.1 -->
+      <button class="accordion-button">
+        <span class="arrow">▶</span>
+        <span class="label">Subsection 1.1</span>
+        <input id="checkbox-subsection-1-1" type="checkbox" class="checkbox">
+      </button>
+      <div class="accordion-content">
+        <!-- Detail 1.1.1 -->
+        <button class="accordion-button">
+          <span class="arrow">▶</span>
+          <span class="label">Detail 1.1.1</span>
+          <input id="checkbox-detail-1-1-1" type="checkbox" class="checkbox">
+        </button>
+        <div class="accordion-content">Content for Detail 1.1.1</div>
+        <!-- Detail 1.1.2 -->
+        <button class="accordion-button">
+          <span class="arrow">▶</span>
+          <span class="label">Detail 1.1.2</span>
+          <input id="checkbox-detail-1-1-2" type="checkbox" class="checkbox">
+        </button>
+        <div class="accordion-content">Content for Detail 1.1.2</div>
+      </div>
+      <!-- Subsection 1.2 -->
+      <button class="accordion-button">
+        <span class="arrow">▶</span>
+        <span class="label">Subsection 1.2</span>
+        <input id="checkbox-subsection-1-2" type="checkbox" class="checkbox">
+      </button>
+      <div class="accordion-content">
+        <!-- Detail 1.2.1 -->
+        <button class="accordion-button">
+          <span class="arrow">▶</span>
+          <span class="label">Detail 1.2.1</span>
+          <input id="checkbox-detail-1-2-1" type="checkbox" class="checkbox">
+        </button>
+        <div class="accordion-content">Content for Detail 1.2.1</div>
+        <!-- Detail 1.2.2 -->
+        <button class="accordion-button">
+          <span class="arrow">▶</span>
+          <span class="label">Detail 1.2.2</span>
+          <input id="checkbox-detail-1-2-2" type="checkbox" class="checkbox">
+        </button>
+        <div class="accordion-content">Content for Detail 1.2.2</div>
+      </div>
+    </div>
+
+    <!-- Section 2 -->
+    <button class="accordion-button">
+      <span class="arrow">▶</span>
+      <img class="ach-icon" src="" alt="Icon">
+      <span class="label">Section 2</span>
+      <input id="checkbox-section-2" type="checkbox" class="checkbox">
+    </button>
+    <div class="accordion-content">
+      <!-- Subsection 2.1 -->
+      <button class="accordion-button">
+        <span class="arrow">▶</span>
+        <span class="label">Subsection 2.1</span>
+        <input id="checkbox-subsection-2-1" type="checkbox" class="checkbox">
+      </button>
+      <div class="accordion-content">
+        <!-- Detail 2.1.1 -->
+        <button class="accordion-button">
+          <span class="arrow">▶</span>
+          <span class="label">Detail 2.1.1</span>
+          <input id="checkbox-detail-2-1-1" type="checkbox" class="checkbox">
+        </button>
+        <div class="accordion-content">Content for Detail 2.1.1</div>
+        <!-- Detail 2.1.2 -->
+        <button class="accordion-button">
+          <span class="arrow">▶</span>
+          <span class="label">Detail 2.1.2</span>
+          <input id="checkbox-detail-2-1-2" type="checkbox" class="checkbox">
+        </button>
+        <div class="accordion-content">Content for Detail 2.1.2</div>
+      </div>
+      <!-- Subsection 2.2 -->
+      <button class="accordion-button">
+        <span class="arrow">▶</span>
+        <span class="label">Subsection 2.2</span>
+        <input id="checkbox-subsection-2-2" type="checkbox" class="checkbox">
+      </button>
+      <div class="accordion-content">
+        <!-- Detail 2.2.1 -->
+        <button class="accordion-button">
+          <span class="arrow">▶</span>
+          <span class="label">Detail 2.2.1</span>
+          <input id="checkbox-detail-2-2-1" type="checkbox" class="checkbox">
+        </button>
+        <div class="accordion-content">Content for Detail 2.2.1</div>
+        <!-- Detail 2.2.2 -->
+        <button class="accordion-button">
+          <span class="arrow">▶</span>
+          <span class="label">Detail 2.2.2</span>
+          <input id="checkbox-detail-2-2-2" type="checkbox" class="checkbox">
+        </button>
+        <div class="accordion-content">Content for Detail 2.2.2</div>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+
+  <script>
+    const body = document.body;
+    const accordionRoot = document.getElementById('accordionRoot');
+
+    const setupAZMenu = () => {
+      const azMenu = document.getElementById('azMenu');
+      const frag = document.createDocumentFragment();
+      for (let i = 65; i <= 90; i++) {
+        const btn = document.createElement('button');
+        btn.textContent = String.fromCharCode(i);
+        frag.appendChild(btn);
+      }
+      azMenu.appendChild(frag);
+    };
+
+    const restoreDarkMode = () => {
+      if (localStorage.getItem('darkMode') === 'true') {
+        body.classList.add('dark');
+      }
+    };
+
+    const restoreCheckboxState = () => {
+      document.querySelectorAll('.checkbox').forEach(cb => {
+        const saved = localStorage.getItem(cb.id);
+        if (saved !== null) cb.checked = JSON.parse(saved);
+      });
+    };
+
+    const setupAccordion = () => {
+      document.querySelectorAll('.accordion-button').forEach(button => {
+        button.addEventListener('click', e => {
+          if (e.target.tagName === 'INPUT') return;
+          const content = button.nextElementSibling;
+          const isOpen = content && content.style.display === 'block';
+          button.classList.toggle('active', !isOpen);
+          if (content) content.style.display = isOpen ? 'none' : 'block';
+        });
+      });
+    };
+
+    const setupCheckboxLogic = () => {
+      document.querySelectorAll('.accordion-button .checkbox').forEach(cb => {
+        cb.addEventListener('change', e => {
+          const box = e.target;
+          const btn = box.closest('.accordion-button');
+          const section = btn.nextElementSibling;
+
+          if (section && section.classList.contains('accordion-content')) {
+            section.querySelectorAll('.checkbox').forEach(c => c.checked = box.checked);
+          }
+
+          let cur = btn;
+          while (cur) {
+            const parentSection = cur.parentElement.closest('.accordion-content');
+            const parentBtn = parentSection?.previousElementSibling;
+            if (!parentBtn) break;
+            const parentBox = parentBtn.querySelector('.checkbox');
+            const sibs = parentSection.querySelectorAll('.checkbox');
+            parentBox.checked = Array.from(sibs).every(c => c.checked);
+            cur = parentBtn;
+          }
+
+          localStorage.setItem(box.id, JSON.stringify(box.checked));
+        });
+      });
+    };
+
+    const setupSearch = () => {
+      const input = document.getElementById('search');
+      input.addEventListener('input', function() {
+        const q = this.value.toLowerCase();
+        const re = new RegExp(q, 'gi');
+        document.querySelectorAll('.highlight').forEach(el => el.replaceWith(document.createTextNode(el.textContent)));
+        document.querySelectorAll('.accordion-content').forEach(c => c.style.display = 'none');
+        document.querySelectorAll('.accordion-button').forEach(btn => {
+          const lbl = btn.querySelector('.label');
+          const txt = lbl.textContent.toLowerCase();
+          const show = txt.includes(q) || q === '';
+          btn.style.display = show ? 'flex' : 'none';
+          if (show && q) {
+            lbl.innerHTML = lbl.textContent.replace(re, `<span class="highlight">$&</span>`);
+            let cur = btn;
+            while (cur) {
+              const sec = cur.parentElement.closest('.accordion-content');
+              const pbtn = sec?.previousElementSibling;
+              if (sec) sec.style.display = 'block';
+              if (pbtn) { pbtn.classList.add('active'); pbtn.style.display = 'flex'; }
+              cur = pbtn;
+            }
+            const cont = btn.nextElementSibling;
+            if (cont) cont.style.display = 'block';
+          }
+        });
+        document.querySelectorAll('.accordion-content').forEach(c => {
+          if (!c.querySelector('.accordion-button')) {
+            const t = c.textContent.toLowerCase();
+            const ok = t.includes(q) || q === '';
+            c.style.display = ok ? 'block' : 'none';
+            if (ok && q) c.innerHTML = c.textContent.replace(re, `<span class="highlight">$&</span>`);
+          }
+        });
+      });
+    };
+
+    const setupControls = () => {
+      document.getElementById('expandAll').onclick = () => {
+        document.querySelectorAll('.accordion-content').forEach(c => c.style.display = 'block');
+        document.querySelectorAll('.accordion-button').forEach(b => b.classList.add('active'));
+      };
+      document.getElementById('collapseAll').onclick = () => {
+        document.querySelectorAll('.accordion-content').forEach(c => c.style.display = 'none');
+        document.querySelectorAll('.accordion-button').forEach(b => b.classList.remove('active'));
+      };
+      document.getElementById('checkAll').onclick = () => {
+        document.querySelectorAll('.checkbox').forEach(c => {
+          c.checked = true;
+          localStorage.setItem(c.id, 'true');
+        });
+      };
+      document.getElementById('clearAll').onclick = () => {
+        document.querySelectorAll('.checkbox').forEach(c => {
+          c.checked = false;
+          localStorage.removeItem(c.id);
+        });
+      };
+    };
+
+    const setupDarkToggle = () => {
+      document.getElementById('toggleDark').onclick = () => {
+        const isDark = body.classList.toggle('dark');
+        localStorage.setItem('darkMode', isDark);
+      };
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      setupAZMenu();
+      restoreDarkMode();
+      setupAccordion();
+      setupCheckboxLogic();
+      setupSearch();
+      setupControls();
+      setupDarkToggle();
+      restoreCheckboxState();
+    });
+  </script>
+</body>
+</html>

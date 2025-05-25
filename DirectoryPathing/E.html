@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>List of E Games</title>
+  <style>
+    body {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      background: #f9f9f9;
+      color: #111;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 15px;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.05);
+    }
+
+    .header {
+      border-bottom: 1px solid #ccc;
+      margin-bottom: 20px;
+      padding-bottom: 5px;
+    }
+
+    .header a {
+      text-decoration: none;
+      color: #333;
+    }
+
+    .header a:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 26px;
+      font-family: Georgia, serif;
+    }
+
+    .az-menu {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .az-menu button {
+      background: none;
+      border: 1px solid transparent;
+      padding: 2px 6px;
+      font-size: 14px;
+      color: #3366cc;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .az-menu button:hover {
+      background-color: #eef;
+      border-color: #ccd;
+      color: #224499;
+    }
+
+    #search {
+      width: 100%;
+      padding: 8px 12px;
+      font-size: 14px;
+      margin-bottom: 20px;
+      border: 1px solid #aaa;
+      border-radius: 15px;
+      background-color: #fcfcfc;
+      box-sizing: border-box;
+    }
+
+    #main-title {
+      text-align: center;
+      font-family: Georgia, serif;
+      color: #222;
+      margin-bottom: 10px;
+    }
+
+    .game-list li {
+      margin-bottom: 10px;
+    }
+
+    .game-list a:link {
+      color: #3366cc;
+      text-decoration: underline;
+    }
+
+    .game-list a:visited {
+      color: purple;
+    }
+
+    .game-list a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <a href="../index.html"><h1>HowDoIGetThisAchievement.com</h1></a>
+    </div>
+
+    <div class="az-menu">
+      <!-- A-Z buttons -->
+      <a href="../DirectoryPathing/A.html"><button>A</button></a>
+      <a href="../DirectoryPathing/B.html"><button>B</button></a>
+      <a href="../DirectoryPathing/C.html"><button>C</button></a>
+      <a href="../DirectoryPathing/D.html"><button>D</button></a>
+      <a href="../DirectoryPathing/E.html"><button>E</button></a>
+      <a href="../DirectoryPathing/F.html"><button>F</button></a>
+      <a href="../DirectoryPathing/G.html"><button>G</button></a>
+      <a href="../DirectoryPathing/H.html"><button>H</button></a>
+      <a href="../DirectoryPathing/I.html"><button>I</button></a>
+      <a href="../DirectoryPathing/J.html"><button>J</button></a>
+      <a href="../DirectoryPathing/K.html"><button>K</button></a>
+      <a href="../DirectoryPathing/L.html"><button>L</button></a>
+      <a href="../DirectoryPathing/M.html"><button>M</button></a>
+      <a href="../DirectoryPathing/N.html"><button>N</button></a>
+      <a href="../DirectoryPathing/O.html"><button>O</button></a>
+      <a href="../DirectoryPathing/P.html"><button>P</button></a>
+      <a href="../DirectoryPathing/Q.html"><button>Q</button></a>
+      <a href="../DirectoryPathing/R.html"><button>R</button></a>
+      <a href="../DirectoryPathing/S.html"><button>S</button></a>
+      <a href="../DirectoryPathing/T.html"><button>T</button></a>
+      <a href="../DirectoryPathing/U.html"><button>U</button></a>
+      <a href="../DirectoryPathing/V.html"><button>V</button></a>
+      <a href="../DirectoryPathing/W.html"><button>W</button></a>
+      <a href="../DirectoryPathing/X.html"><button>X</button></a>
+      <a href="../DirectoryPathing/Y.html"><button>Y</button></a>
+      <a href="../DirectoryPathing/Z.html"><button>Z</button></a>
+    </div>
+
+    <input type="text" id="search" placeholder="Search for Game...">
+
+    <div id="main-title"><h1>List of E Games</h1></div>
+
+    <div>
+      <ul class="game-list">
+        <li><a href="../GameDirectory/E/Elden_Ring.html">Elden Ring</a></li>
+        <li><a href="../GameDirectory/E/GAMEHERE.html">EVE Online</a></li>
+        <li><a href="../GameDirectory/E/GAMEHERE.html">Enter the Gungeon</a></li>
+        <li><a href="../GameDirectory/E/GAMEHERE.html">Escape from Tarkov</a></li>
+        <li><a href="../GameDirectory/E/GAMEHERE.html">Esport Manager</a></li>
+      </ul>
+    </div>
+
+    <script>
+      document.getElementById('search').addEventListener('input', function () {
+        const query = this.value.toLowerCase();
+        const items = document.querySelectorAll('.game-list li');
+
+        items.forEach(function (item) {
+          const text = item.textContent.toLowerCase();
+          item.style.display = text.includes(query) ? '' : 'none';
+        });
+      });
+    </script>
+  </div>
+</body>
+</html>

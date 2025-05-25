@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <title>HowDoIGetThisAchievement</title>
+  <style>
+    body {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      background: #f9f9f9;
+      color: #111;
+      margin: 0;
+    }
+    
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 15px;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.05);
+    }
+    
+    .header {
+      border-bottom: 1px solid #ccc;
+      margin-bottom: 20px;
+      padding-bottom: 5px;
+    }
+    
+    .header a {
+      text-decoration: none;
+      color: #333;
+    }
+    
+    .header a:hover {
+      text-decoration: underline;
+    }
+    
+    h1 {
+      margin: 0;
+      font-size: 26px;
+      font-family: Georgia, serif;
+    }
+    
+    .az-menu {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+    
+    .az-menu button {
+      background: none;
+      border: 1px solid transparent;
+      padding: 2px 6px;
+      font-size: 14px;
+      color: #3366cc;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    
+    .az-menu button:hover {
+      background-color: #eef;
+      border-color: #ccd;
+      color: #224499;
+    }
+    
+    #search {
+      width: 100%;
+      padding: 8px;
+      font-size: 14px;
+      margin-bottom: 20px;
+      border: 1px solid #aaa;
+      border-radius: 3px;
+      border-radius: 15px;
+      background-color: #fcfcfc;
+    }
+    
+    .accordion-button {
+      background: #fdfdfd;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      width: 100%;
+      text-align: left;
+      padding: 5px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      min-height: 64px;
+      margin-bottom: 6px;
+      transition: background 0.2s;
+    }
+    
+    .accordion-button:hover {
+      background: #f1f1f1;
+    }
+    
+    .arrow {
+      margin-right: 10px;
+      font-size: 12px;
+      transition: transform 0.2s ease;
+      color: #666;
+    }
+    
+    .accordion-button.active .arrow {
+      transform: rotate(90deg);
+    }
+    
+    .ach-icon {
+      width: 64px;
+      height: 64px;
+      margin-right: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background-color: #fafafa;
+    }
+    
+    .label {
+      flex-grow: 1;
+      font-weight: bold;
+      color: #222;
+    }
+    
+    .checkbox {
+      transform: scale(1.5);
+      cursor: pointer;
+      margin-right: 20px;
+    }
+    
+    .accordion-content {
+      display: none;
+      padding-left: 25px;
+      margin-bottom: 5px;
+      background-color: #fcfcfc;
+      border-left: 2px solid #ddd;
+      padding-top: 4px;
+      padding-bottom: 4px;
+    }
+    
+    .highlight {
+      background-color: yellow;
+      font-weight: bold;
+    }
+    
+    #main-title {
+      text-align: center;
+      font-family: Georgia, serif;
+      color: #222;
+      margin-bottom: 10px;
+    }
+      </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html">
+              <h1>HowDoIGetThisAchievement.com</h1>
+            </a>
+        </div>
+    
+        <div class="az-menu">
+          <!-- A-Z buttons -->
+          <a href="DirectoryPathing/A.html"><button>A</button></a>
+          <a href="DirectoryPathing/B.html"><button>B</button></a>
+          <a href="DirectoryPathing/C.html"><button>C</button></a>
+          <a href="DirectoryPathing/D.html"><button>D</button></a>
+          <a href="DirectoryPathing/E.html"><button>E</button></a>
+          <a href="DirectoryPathing/F.html"><button>F</button></a>
+          <a href="DirectoryPathing/G.html"><button>G</button></a>
+          <a href="DirectoryPathing/H.html"><button>H</button></a>
+          <a href="DirectoryPathing/I.html"><button>I</button></a>
+          <a href="DirectoryPathing/J.html"><button>J</button></a>
+          <a href="DirectoryPathing/K.html"><button>K</button></a>
+          <a href="DirectoryPathing/L.html"><button>L</button></a>
+          <a href="DirectoryPathing/M.html"><button>M</button></a>
+          <a href="DirectoryPathing/N.html"><button>N</button></a>
+          <a href="DirectoryPathing/O.html"><button>O</button></a>
+          <a href="DirectoryPathing/P.html"><button>P</button></a>
+          <a href="DirectoryPathing/Q.html"><button>Q</button></a>
+          <a href="DirectoryPathing/R.html"><button>R</button></a>
+          <a href="DirectoryPathing/S.html"><button>S</button></a>
+          <a href="DirectoryPathing/T.html"><button>T</button></a>
+          <a href="DirectoryPathing/U.html"><button>U</button></a>
+          <a href="DirectoryPathing/V.html"><button>V</button></a>
+          <a href="DirectoryPathing/W.html"><button>W</button></a>
+          <a href="DirectoryPathing/X.html"><button>X</button></a>
+          <a href="DirectoryPathing/Y.html"><button>Y</button></a>
+          <a href="DirectoryPathing/Z.html"><button>Z</button></a>
+        </div>
+
+    <div style="margin:center; background-color:green"
+    <table>
+			<tbody>
+        <tr>
+				  <td colspan="2">
+					  <h3>
+						  Some Words or something here
+					  </h3>
+				  </td>
+			  </tr>
+			<tr>
+				<td>
+          <a href="GameDirectory/D/Death_Stranding.html">
+            <img src="images/DeathStranding_Poster_1080.jpg" width="320" height="180", style="float: left; padding: 40px; background-color:#3366cc">
+          </a>
+				</td>
+				<td>
+          <a href="GameDirectory/E/Elden_Ring.html">
+            <img src="images/EldenRing_Poster_1080.jpg" width="320" height="180", style="float: right; padding: 40px; background-color: #224499;">
+          </a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<img src="images/BIGCHONK.jpg" width="320" height="180">
+				</td>
+				<td>
+					<img src="images/BIGCHONK.jpg" width="320" height="180">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<img src="images/BIGCHONK.jpg" width="320" height="180">
+				</td>
+				<td>
+					<img src="images/BIGCHONK.jpg" width="320" height="180">
+				</td>
+			</tr>
+		</tbody>
+  </table>
+    </div>
+</body>
+</html>
