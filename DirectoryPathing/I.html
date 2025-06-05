@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>List of I Games</title>
+  <style>
+    body {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      background: #f9f9f9;
+      color: #111;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 15px;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.05);
+      position: relative;
+    }
+
+    .header {
+      border-bottom: 1px solid #ccc;
+      margin-bottom: 20px;
+      padding-bottom: 5px;
+    }
+
+    .header a {
+      text-decoration: none;
+      color: #333;
+    }
+
+    .header:hover {
+      text-decoration: underline;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 26px;
+      font-family: Georgia, serif;
+    }
+
+    #main-title {
+      text-align: center;
+      font-family: Georgia, serif;
+      color: #222;
+      margin-bottom: 10px;
+    }
+
+    .az-menu {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .az-menu button {
+      background: none;
+      border: 1px solid transparent;
+      padding: 2px 6px;
+      font-size: 14px;
+      color: #3366cc;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .az-menu a:visited {
+      color: purple;
+    }
+
+    #search {
+      width: 100%;
+      padding: 8px 12px;
+      font-size: 14px;
+      margin-bottom: 20px;
+      border: 1px solid #aaa;
+      border-radius: 15px;
+      background-color: #fcfcfc;
+      box-sizing: border-box;
+    }
+
+    /* Dropdown container for search results */
+    #search-results {
+      position: absolute;
+      top: 136px; /* container top (20) + padding (20) + header height (~40) + search input height + margin */
+      left: 20px;
+      right: 20px;
+      max-height: 220px;
+      overflow-y: auto;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      list-style: none;
+      padding-left: 0;
+      margin-top: 0;
+      z-index: 1000;
+      display: none; /* hidden by default */
+    }
+
+    #search-results li a {
+      display: block;
+      padding: 8px 12px;
+      color: #3366cc;
+      text-decoration: none;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+    }
+
+    #search-results li:last-child a {
+      border-bottom: none;
+    }
+
+    #search-results li a:hover,
+    #search-results li a:focus {
+      background-color: #eef;
+      outline: none;
+    }
+
+    .game-list li {
+      margin-bottom: 10px;
+    }
+
+    .game-list a:link {
+      color: #3366cc;
+      text-decoration: none;
+    }
+
+    .game-list a:visited {
+      color: purple;
+    }
+
+    .game-list a:hover {
+      text-decoration: underline;
+    }
+  </style>
+
+  <!-- Fuse.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <a href="../index.html"><h1>HowDoIGetThisAchievement.com</h1></a>
+    </div>
+
+    <nav class="az-menu">
+      <!-- A-Z buttons -->
+      <a href="../DirectoryPathing/A.html"><button>A</button></a>
+      <a href="../DirectoryPathing/B.html"><button>B</button></a>
+      <a href="../DirectoryPathing/C.html"><button>C</button></a>
+      <a href="../DirectoryPathing/D.html"><button>D</button></a>
+      <a href="../DirectoryPathing/E.html"><button>E</button></a>
+      <a href="../DirectoryPathing/F.html"><button>F</button></a>
+      <a href="../DirectoryPathing/G.html"><button>G</button></a>
+      <a href="../DirectoryPathing/H.html"><button>H</button></a>
+      <a href="../DirectoryPathing/I.html"><button>I</button></a>
+      <a href="../DirectoryPathing/J.html"><button>J</button></a>
+      <a href="../DirectoryPathing/K.html"><button>K</button></a>
+      <a href="../DirectoryPathing/L.html"><button>L</button></a>
+      <a href="../DirectoryPathing/M.html"><button>M</button></a>
+      <a href="../DirectoryPathing/N.html"><button>N</button></a>
+      <a href="../DirectoryPathing/O.html"><button>O</button></a>
+      <a href="../DirectoryPathing/P.html"><button>P</button></a>
+      <a href="../DirectoryPathing/Q.html"><button>Q</button></a>
+      <a href="../DirectoryPathing/R.html"><button>R</button></a>
+      <a href="../DirectoryPathing/S.html"><button>S</button></a>
+      <a href="../DirectoryPathing/T.html"><button>T</button></a>
+      <a href="../DirectoryPathing/U.html"><button>U</button></a>
+      <a href="../DirectoryPathing/V.html"><button>V</button></a>
+      <a href="../DirectoryPathing/W.html"><button>W</button></a>
+      <a href="../DirectoryPathing/X.html"><button>X</button></a>
+      <a href="../DirectoryPathing/Y.html"><button>Y</button></a>
+      <a href="../DirectoryPathing/Z.html"><button>Z</button></a>
+      <a href="../DirectoryPathing/0-9.html"><button>0-9</button></a>
+    </nav>
+
+    <input type="text" id="search" placeholder="Search for any Game..." autocomplete="off" />
+
+    <ul id="search-results"></ul>
+
+    <div id="main-title"><h1>List of I Games</h1></div>
+
+    <div id="main-title">No Games here yet, more coming soon</div> <!--DELETE ME ONCE FILLED WITH GAMES-->
+<!--
+    <div>
+      <ul class="game-list">
+        <li><a href="../GameDirectory/A/GAMEHERE.html">Apex Legends</a></li>
+        <li><a href="../GameDirectory/A/GAMEHERE.html">ARK: Survival Evolved</a></li>
+        <li><a href="../GameDirectory/A/GAMEHERE.html">A Plague Tale: Innocence</a></li>
+        <li><a href="../GameDirectory/A/GAMEHERE.html">Antichamber</a></li>
+        <li><a href="../GameDirectory/A/GAMEHERE.html">Among Us</a></li>
+      </ul>
+    </div>
+-->
+    <script>
+      // Prepare data for Fuse.js: gather game titles and URLs
+      const games = Array.from(document.querySelectorAll('.game-list li a')).map(a => ({
+        title: a.textContent.trim(),
+        url: a.href
+      }));
+
+      // Fuse.js options for fuzzy search
+      const fuseOptions = {
+        keys: ['title'],
+        threshold: 0.4, // adjust for sensitivity (0 = exact only, 1 = match everything)
+      };
+
+      const fuse = new Fuse(games, fuseOptions);
+
+      const searchInput = document.getElementById('search');
+      const resultsList = document.getElementById('search-results');
+
+      searchInput.addEventListener('input', () => {
+        const query = searchInput.value.trim();
+
+        // Clear old results
+        resultsList.innerHTML = '';
+
+        if (query === '') {
+          resultsList.style.display = 'none';
+          return;
+        }
+
+        // Search with Fuse.js
+        const results = fuse.search(query, { limit: 10 });
+
+        if (results.length === 0) {
+          resultsList.style.display = 'none';
+          return;
+        }
+
+        // Show dropdown and add items
+        resultsList.style.display = 'block';
+
+        results.forEach(({ item }) => {
+          const li = document.createElement('li');
+          const a = document.createElement('a');
+          a.textContent = item.title;
+          a.href = item.url;
+          a.setAttribute('tabindex', '0');
+          li.appendChild(a);
+          resultsList.appendChild(li);
+        });
+      });
+
+      // Hide dropdown if clicked outside search or results
+      document.addEventListener('click', e => {
+        if (!searchInput.contains(e.target) && !resultsList.contains(e.target)) {
+          resultsList.style.display = 'none';
+        }
+      });
+    </script>
+  </div>
+</body>
+</html>

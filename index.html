@@ -3,221 +3,201 @@
 <head>
   <meta charset="UTF-8">
   <title>HowDoIGetThisAchievement</title>
-  <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
-  <style>
-    body {
-      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-      background: #f9f9f9;
-      color: #111;
-      margin: 0;
-    }
+<style>
+  /* === Base Styles === */
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background: #f9f9f9;
+    color: #111;
+    margin: 0;
+  }
 
-    .container {
-      max-width: 900px;
-      margin: 20px auto;
-      padding: 20px;
-      background: #fff;
-      border: 1px solid #ccc;
-      border-radius: 15px;
-      box-shadow: 2px 2px 6px rgba(0,0,0,0.05);
-    }
+  .container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.05);
+  }
 
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #ccc;
-      margin-bottom: 20px;
-      padding-bottom: 5px;
-    }
+  /* === Header Section === */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+  }
 
-    .header a:hover {
-      text-decoration: underline;
-    }
+  .header a:hover {
+    text-decoration: underline;
+  }
 
-    .site-title {
-      text-decoration: none;
-      color: #333;
-    }
+  .site-title {
+    text-decoration: none;
+    color: #333;
+  }
 
-    .site-title h1 {
-      margin: 0;
-      font-size: 26px;
-      font-family: Georgia, serif;
-    }
+  .site-title h1 {
+    margin: 0;
+    font-size: 26px;
+    font-family: Georgia, serif;
+  }
 
-    .welcome {
-      font-size: 12px;
-      color: #555;
-      margin: 0;
-      max-width: 50%;
-      text-align: right;
-    }
+  .welcome {
+    font-size: 12px;
+    color: #555;
+    margin: 0;
+    max-width: 50%;
+    text-align: right;
+  }
 
-    .az-menu {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 6px;
-      margin: 20px 0;
-    }
+  /* === A-Z Menu === */
+  .az-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    margin: 20px 0;
+  }
 
-    .az-menu button {
-      background: none;
-      border: 1px solid transparent;
-      padding: 2px 6px;
-      font-size: 14px;
-      color: #3366cc;
-      text-decoration: underline;
-      cursor: pointer;
-    }
+  .az-menu button {
+    background: none;
+    border: 1px solid transparent;
+    padding: 2px 6px;
+    font-size: 14px;
+    color: #3366cc;
+    text-decoration: underline;
+    cursor: pointer;
+  }
 
-    .az-menu button:hover {
-      background-color: #eef;
-      border-color: #ccd;
-      color: #224499;
-    }
+  .az-menu button:hover {
+    background-color: #eef;
+    border-color: #ccd;
+    color: #224499;
+  }
 
-    #search {
-      width: 100%;
-      padding: 8px 12px;
-      font-size: 14px;
-      margin-bottom: 20px;
-      border: 1px solid #aaa;
-      border-radius: 15px;
-      background-color: #fcfcfc;
-      box-sizing: border-box;
-    }
+  /* === Search === */
+  #search {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 14px;
+    margin-bottom: 20px;
+    border: 1px solid #aaa;
+    border-radius: 15px;
+    background-color: #fcfcfc;
+    box-sizing: border-box;
+  }
 
-    #search-results {
-      position: absolute;
-      background: #fff;
-      width: calc(100% - 42px);
-      max-height: 200px;
-      overflow-y: auto;
-      border-radius: 10px;
-      z-index: 1000;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      margin-top: -18px;
-    }
+  #search-results {
+    position: absolute;
+    background: #fff;
+    width: calc(100% - 42px);
+    max-height: 200px;
+    overflow-y: auto;
+    border-radius: 10px;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: -18px;
+  }
 
-    .search-result {
-      padding: 10px;
-      cursor: pointer;
-      font-size: 16px;
-      color: #3366cc;
+  .search-result {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #3366cc;
+  }
 
-    }
+  .search-result:hover {
+    background-color: #eef;
+  }
 
-    .search-result:hover {
-      background-color: #eef;
-    }
+  /* === Layout: Main Split === */
+  .main-split {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
 
-    .main-split {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 30px;
-    }
+  .howto-section,
+  .recent-section {
+    flex: 1;
+    min-width: 280px;
+  }
 
-    .howto-section,
-    .recent-section {
-      flex: 1;
-      min-width: 280px;
-    }
+  /* === Section Headers and Text === */
+  .section-header {
+    font-size: 20px;
+    font-family: Georgia, serif;
+    margin-bottom: 15px;
+    color: #222;
+    text-align: center;
+  }
 
-    .section-header {
-      font-size: 20px;
-      font-family: Georgia, serif;
-      margin-bottom: 15px;
-      color: #222;
-      text-align: center;
-    }
+  .howto-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+    padding: 0 10px;
+  }
 
-    .howto-text {
-      font-size: 14px;
-      line-height: 1.6;
-      color: #333;
-      padding: 0 10px;
-    }
+  /* === Recent Game List === */
+  .recent-game-list li {
+    margin-bottom: 10px;
+  }
 
-    .game-links-grid {
-      display: flexbox;
-      flex-wrap: wrap;
-    }
+  .recent-game-list a:link {
+    color: #3366cc;
+    text-decoration: none;
+  }
 
-    .game-link {
-      width: 40%;
-      min-width: 160px;
-      text-align: center;
-    }
+  .recent-game-list a:visited {
+    color: purple;
+  }
 
-    .game-link a {
-      font-size: 22px;
-      color: #3366cc;
-      text-decoration: underline;
-      font-weight: bold;
-    }
+  .recent-game-list a:hover {
+    text-decoration: underline;
+  }
 
-    .game-link a:hover {
-      color: #224499;
-    }
+  .last-updated {
+    text-align: center;
+    font-size: 12px;
+    color: #999;
+    margin-top: 20px;
+  }
 
-    .game-link a:visited {
-      color: #800080;
-    }
+  /* === Random Game Section === */
+  .random-block {
+    text-align: center;
+    margin-top: 30px;
+  }
 
-    .last-updated {
-      text-align: center;
-      font-size: 12px;
-      color: #999;
-      margin-top: 20px;
-    }
+  .random-button {
+    font-size: 14px;
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+  }
 
-    .random-block {
-      text-align: center;
-      margin-top: 30px;
-    }
+  .random-button:hover {
+    background-color: #f0f0f0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
 
-    .random-button {
-      font-size: 14px;
-      padding: 8px 16px;
-      border: 1px solid #ccc;
-      border-radius: 15px;
-      background-color: #fff;
-      color: #333;
-      cursor: pointer;
-      transition: background 0.2s, box-shadow 0.2s;
-    }
-
-    .random-button:hover {
-      background-color: #f0f0f0;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    }
-
-    .random-label {
-      font-size: 13px;
-      color: #555;
-      margin-top: 4px;
-      display: block;
-    }
-
-    .recent-game-list li {
-      margin-bottom: 10px;
-    }
-
-    .recent-game-list a:link {
-      color: #3366cc;
-      text-decoration: underline;
-    }
-
-    .recent-game-list a:visited {
-      color: purple;
-    }
-
-    .recent-game-list a:hover {
-      text-decoration: underline;
-    }
-  </style>
+  .random-label {
+    font-size: 13px;
+    color: #555;
+    margin-top: 4px;
+    display: block;
+  }
+</style>
 </head>
 <body>
   <div class="container">
@@ -233,7 +213,7 @@
     </div>
 
     <!-- A-Z Menu Buttons -->
-    <div class="az-menu">
+    <nav class="az-menu">
       <a href="DirectoryPathing/A.html"><button>A</button></a>
       <a href="DirectoryPathing/B.html"><button>B</button></a>
       <a href="DirectoryPathing/C.html"><button>C</button></a>
@@ -261,9 +241,9 @@
       <a href="DirectoryPathing/Y.html"><button>Y</button></a>
       <a href="DirectoryPathing/Z.html"><button>Z</button></a>
       <a href="DirectoryPathing/0-9.html"><button>0-9</button></a>
-    </div>
+  </nav>
 
-    <div style="position: relative;">
+    <div>
       <input type="text" id="search" placeholder="Search for any Game...">
       <div id="search-results"></div>
     </div>
@@ -284,8 +264,8 @@
       <div class="recent-section">
         <div class="section-header">Recently Added Games</div>
           <ul class="recent-games-list">
-            <li><a href="GameDirectory/D/Death_Stranding.html">Death Stranding</a></li>
             <li><a href="GameDirectory/E/Elden_Ring.html">Elden Ring</a></li>
+            <li><a href="GameDirectory/D/Death_Stranding.html">Death Stranding</a></li>
             <li><a href="GameDirectory/H/Hollow_Knight.html"></a></li>
             <li><a href="GameDirectory/S/Sekiro.html"></a></li>
             <li><a href="GameDirectory/B/Bloodborne.html"></a></li>
@@ -306,15 +286,20 @@
     </div>
   </div>
 
-  <script>
+<script defer src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
     let fuse;
+    let searchData = [];
 
     const searchInput = document.getElementById("search");
     const resultsDiv = document.getElementById("search-results");
 
+    // === Load search data and initialize Fuse.js ===
     fetch('searchList.json')
       .then(res => res.json())
       .then(data => {
+        searchData = data;
         fuse = new Fuse(data, {
           keys: ['name'],
           threshold: 0.3,
@@ -322,57 +307,42 @@
         });
       });
 
-    searchInput.addEventListener("input", () => {
-      const query = searchInput.value.trim();
-      resultsDiv.innerHTML = "";
+    // === Render up to N results from a query ===
+    function renderSearchResults(query, limit = 5) {
+      resultsDiv.replaceChildren();
 
       if (!query || !fuse) return;
 
-      const results = fuse.search(query).slice(0, 5);
+      const results = fuse.search(query).slice(0, limit);
       results.forEach(result => {
         const game = result.item;
         const div = document.createElement("div");
         div.classList.add("search-result");
         div.textContent = game.name;
-        div.onclick = () => {
-          window.location.href = game.url;
-        };
+        div.onclick = () => window.location.href = game.url;
         resultsDiv.appendChild(div);
       });
-    });
-
-    document.addEventListener("click", (e) => {
-      if (!searchInput.contains(e.target) && !resultsDiv.contains(e.target)) {
-        resultsDiv.innerHTML = "";
-      }
-    });
-
-    searchInput.addEventListener("focus", () => {
-      const query = searchInput.value.trim();
-      if (query && fuse) {
-        const results = fuse.search(query).slice(0, 10);
-        resultsDiv.innerHTML = "";
-        results.forEach(result => {
-          const game = result.item;
-          const div = document.createElement("div");
-          div.classList.add("search-result");
-          div.textContent = game.name;
-          div.onclick = () => {
-            window.location.href = game.url;
-          };
-          resultsDiv.appendChild(div);
-        });
-      }
-    });
-
-    function goToRandomGame() {
-      fetch('searchList.json')
-        .then(res => res.json())
-        .then(data => {
-          const random = data[Math.floor(Math.random() * data.length)];
-          if (random?.url) window.location.href = random.url;
-        });
     }
-  </script>
+
+      // === Input & Focus Events ===
+      const handleSearch = () => renderSearchResults(searchInput.value.trim(), 10);
+      searchInput.addEventListener("input", handleSearch);
+      searchInput.addEventListener("focus", handleSearch);
+
+      // === Click outside closes results ===
+      document.addEventListener("click", (e) => {
+        if (!searchInput.contains(e.target) && !resultsDiv.contains(e.target)) {
+          resultsDiv.replaceChildren();
+        }
+      });
+
+      // === Random Game Button ===
+      window.goToRandomGame = function () {
+        if (!searchData.length) return;
+        const random = searchData[Math.floor(Math.random() * searchData.length)];
+        if (random?.url) window.location.href = random.url;
+      };
+  });
+</script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>List of E Games</title>
   <style>
     body {
@@ -19,6 +19,7 @@
       border: 1px solid #ccc;
       border-radius: 15px;
       box-shadow: 2px 2px 6px rgba(0,0,0,0.05);
+      position: relative;
     }
 
     .header {
@@ -32,7 +33,7 @@
       color: #333;
     }
 
-    .header a:hover {
+    .header:hover {
       text-decoration: underline;
     }
 
@@ -40,6 +41,13 @@
       margin: 0;
       font-size: 26px;
       font-family: Georgia, serif;
+    }
+
+    #main-title {
+      text-align: center;
+      font-family: Georgia, serif;
+      color: #222;
+      margin-bottom: 10px;
     }
 
     .az-menu {
@@ -60,10 +68,8 @@
       cursor: pointer;
     }
 
-    .az-menu button:hover {
-      background-color: #eef;
-      border-color: #ccd;
-      color: #224499;
+    .az-menu a:visited {
+      color: purple;
     }
 
     #search {
@@ -77,11 +83,42 @@
       box-sizing: border-box;
     }
 
-    #main-title {
-      text-align: center;
-      font-family: Georgia, serif;
-      color: #222;
-      margin-bottom: 10px;
+    /* Dropdown container for search results */
+    #search-results {
+      position: absolute;
+      top: 136px; /* container top (20) + padding (20) + header height (~40) + search input height + margin */
+      left: 20px;
+      right: 20px;
+      max-height: 220px;
+      overflow-y: auto;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      list-style: none;
+      padding-left: 0;
+      margin-top: 0;
+      z-index: 1000;
+      display: none; /* hidden by default */
+    }
+
+    #search-results li a {
+      display: block;
+      padding: 8px 12px;
+      color: #3366cc;
+      text-decoration: none;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+    }
+
+    #search-results li:last-child a {
+      border-bottom: none;
+    }
+
+    #search-results li a:hover,
+    #search-results li a:focus {
+      background-color: #eef;
+      outline: none;
     }
 
     .game-list li {
@@ -90,7 +127,7 @@
 
     .game-list a:link {
       color: #3366cc;
-      text-decoration: underline;
+      text-decoration: none;
     }
 
     .game-list a:visited {
@@ -101,6 +138,9 @@
       text-decoration: underline;
     }
   </style>
+
+  <!-- Fuse.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
 </head>
 <body>
   <div class="container">
@@ -108,7 +148,7 @@
       <a href="../index.html"><h1>HowDoIGetThisAchievement.com</h1></a>
     </div>
 
-    <div class="az-menu">
+    <nav class="az-menu">
       <!-- A-Z buttons -->
       <a href="../DirectoryPathing/A.html"><button>A</button></a>
       <a href="../DirectoryPathing/B.html"><button>B</button></a>
@@ -137,31 +177,80 @@
       <a href="../DirectoryPathing/Y.html"><button>Y</button></a>
       <a href="../DirectoryPathing/Z.html"><button>Z</button></a>
       <a href="../DirectoryPathing/0-9.html"><button>0-9</button></a>
-    </div>
+    </nav>
 
-    <input type="text" id="search" placeholder="Search for any Game...">
+    <input type="text" id="search" placeholder="Search for any Game..." autocomplete="off" />
+
+    <ul id="search-results"></ul>
 
     <div id="main-title"><h1>List of E Games</h1></div>
 
     <div>
       <ul class="game-list">
         <li><a href="../GameDirectory/E/Elden_Ring.html">Elden Ring</a></li>
-        <li><a href="../GameDirectory/E/GAMEHERE.html">EVE Online</a></li>
-        <li><a href="../GameDirectory/E/GAMEHERE.html">Enter the Gungeon</a></li>
-        <li><a href="../GameDirectory/E/GAMEHERE.html">Escape from Tarkov</a></li>
-        <li><a href="../GameDirectory/E/GAMEHERE.html">Esport Manager</a></li>
+        <li><a href="../GameDirectory/E/GAMEHERE.html"></a></li>
+        <li><a href="../GameDirectory/E/GAMEHERE.html"></a></li>
+        <li><a href="../GameDirectory/E/GAMEHERE.html"></a></li>
+        <li><a href="../GameDirectory/E/GAMEHERE.html"></a></li>
       </ul>
     </div>
 
     <script>
-      document.getElementById('search').addEventListener('input', function () {
-        const query = this.value.toLowerCase();
-        const items = document.querySelectorAll('.game-list li');
+      // Prepare data for Fuse.js: gather game titles and URLs
+      const games = Array.from(document.querySelectorAll('.game-list li a')).map(a => ({
+        title: a.textContent.trim(),
+        url: a.href
+      }));
 
-        items.forEach(function (item) {
-          const text = item.textContent.toLowerCase();
-          item.style.display = text.includes(query) ? '' : 'none';
+      // Fuse.js options for fuzzy search
+      const fuseOptions = {
+        keys: ['title'],
+        threshold: 0.4, // adjust for sensitivity (0 = exact only, 1 = match everything)
+      };
+
+      const fuse = new Fuse(games, fuseOptions);
+
+      const searchInput = document.getElementById('search');
+      const resultsList = document.getElementById('search-results');
+
+      searchInput.addEventListener('input', () => {
+        const query = searchInput.value.trim();
+
+        // Clear old results
+        resultsList.innerHTML = '';
+
+        if (query === '') {
+          resultsList.style.display = 'none';
+          return;
+        }
+
+        // Search with Fuse.js
+        const results = fuse.search(query, { limit: 10 });
+
+        if (results.length === 0) {
+          resultsList.style.display = 'none';
+          return;
+        }
+
+        // Show dropdown and add items
+        resultsList.style.display = 'block';
+
+        results.forEach(({ item }) => {
+          const li = document.createElement('li');
+          const a = document.createElement('a');
+          a.textContent = item.title;
+          a.href = item.url;
+          a.setAttribute('tabindex', '0');
+          li.appendChild(a);
+          resultsList.appendChild(li);
         });
+      });
+
+      // Hide dropdown if clicked outside search or results
+      document.addEventListener('click', e => {
+        if (!searchInput.contains(e.target) && !resultsList.contains(e.target)) {
+          resultsList.style.display = 'none';
+        }
       });
     </script>
   </div>
