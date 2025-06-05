@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
   <title>HowDoIGetThisAchievement</title>
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
   <style>
     body {
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -10,7 +11,7 @@
       color: #111;
       margin: 0;
     }
-    
+
     .container {
       max-width: 900px;
       margin: 20px auto;
@@ -20,36 +21,47 @@
       border-radius: 15px;
       box-shadow: 2px 2px 6px rgba(0,0,0,0.05);
     }
-    
+
     .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       border-bottom: 1px solid #ccc;
       margin-bottom: 20px;
       padding-bottom: 5px;
     }
-    
-    .header a {
-      text-decoration: none;
-      color: #333;
-    }
-    
+
     .header a:hover {
       text-decoration: underline;
     }
-    
-    h1 {
+
+    .site-title {
+      text-decoration: none;
+      color: #333;
+    }
+
+    .site-title h1 {
       margin: 0;
       font-size: 26px;
       font-family: Georgia, serif;
     }
-    
+
+    .welcome {
+      font-size: 12px;
+      color: #555;
+      margin: 0;
+      max-width: 50%;
+      text-align: right;
+    }
+
     .az-menu {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 6px;
-      margin-bottom: 20px;
+      margin: 20px 0;
     }
-    
+
     .az-menu button {
       background: none;
       border: 1px solid transparent;
@@ -59,179 +71,308 @@
       text-decoration: underline;
       cursor: pointer;
     }
-    
+
     .az-menu button:hover {
       background-color: #eef;
       border-color: #ccd;
       color: #224499;
     }
-    
+
     #search {
       width: 100%;
-      padding: 8px;
+      padding: 8px 12px;
       font-size: 14px;
       margin-bottom: 20px;
       border: 1px solid #aaa;
-      border-radius: 3px;
       border-radius: 15px;
       background-color: #fcfcfc;
+      box-sizing: border-box;
     }
-    
-    .accordion-button {
-      background: #fdfdfd;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      width: 100%;
-      text-align: left;
-      padding: 5px;
-      font-size: 14px;
+
+    #search-results {
+      position: absolute;
+      background: #fff;
+      width: calc(100% - 42px);
+      max-height: 200px;
+      overflow-y: auto;
+      border-radius: 10px;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      margin-top: -18px;
+    }
+
+    .search-result {
+      padding: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      color: #3366cc;
+
+    }
+
+    .search-result:hover {
+      background-color: #eef;
+    }
+
+    .main-split {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      cursor: pointer;
-      min-height: 64px;
-      margin-bottom: 6px;
-      transition: background 0.2s;
+      flex-wrap: wrap;
+      gap: 30px;
     }
-    
-    .accordion-button:hover {
-      background: #f1f1f1;
+
+    .howto-section,
+    .recent-section {
+      flex: 1;
+      min-width: 280px;
     }
-    
-    .arrow {
-      margin-right: 10px;
-      font-size: 12px;
-      transition: transform 0.2s ease;
-      color: #666;
-    }
-    
-    .accordion-button.active .arrow {
-      transform: rotate(90deg);
-    }
-    
-    .ach-icon {
-      width: 64px;
-      height: 64px;
-      margin-right: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      background-color: #fafafa;
-    }
-    
-    .label {
-      flex-grow: 1;
-      font-weight: bold;
-      color: #222;
-    }
-    
-    .checkbox {
-      transform: scale(1.5);
-      cursor: pointer;
-      margin-right: 20px;
-    }
-    
-    .accordion-content {
-      display: none;
-      padding-left: 25px;
-      margin-bottom: 5px;
-      background-color: #fcfcfc;
-      border-left: 2px solid #ddd;
-      padding-top: 4px;
-      padding-bottom: 4px;
-    }
-    
-    .highlight {
-      background-color: yellow;
-      font-weight: bold;
-    }
-    
-    #main-title {
-      text-align: center;
+
+    .section-header {
+      font-size: 20px;
       font-family: Georgia, serif;
+      margin-bottom: 15px;
       color: #222;
+      text-align: center;
+    }
+
+    .howto-text {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #333;
+      padding: 0 10px;
+    }
+
+    .game-links-grid {
+      display: flexbox;
+      flex-wrap: wrap;
+    }
+
+    .game-link {
+      width: 40%;
+      min-width: 160px;
+      text-align: center;
+    }
+
+    .game-link a {
+      font-size: 22px;
+      color: #3366cc;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    .game-link a:hover {
+      color: #224499;
+    }
+
+    .game-link a:visited {
+      color: #800080;
+    }
+
+    .last-updated {
+      text-align: center;
+      font-size: 12px;
+      color: #999;
+      margin-top: 20px;
+    }
+
+    .random-block {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .random-button {
+      font-size: 14px;
+      padding: 8px 16px;
+      border: 1px solid #ccc;
+      border-radius: 15px;
+      background-color: #fff;
+      color: #333;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+
+    .random-button:hover {
+      background-color: #f0f0f0;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+
+    .random-label {
+      font-size: 13px;
+      color: #555;
+      margin-top: 4px;
+      display: block;
+    }
+
+    .recent-game-list li {
       margin-bottom: 10px;
     }
-      </style>
+
+    .recent-game-list a:link {
+      color: #3366cc;
+      text-decoration: underline;
+    }
+
+    .recent-game-list a:visited {
+      color: purple;
+    }
+
+    .recent-game-list a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
-
 <body>
-    <div class="container">
-        <div class="header">
-            <a href="index.html">
-              <h1>HowDoIGetThisAchievement.com</h1>
-            </a>
-        </div>
-    
-        <div class="az-menu">
-          <!-- A-Z buttons -->
-          <a href="DirectoryPathing/A.html"><button>A</button></a>
-          <a href="DirectoryPathing/B.html"><button>B</button></a>
-          <a href="DirectoryPathing/C.html"><button>C</button></a>
-          <a href="DirectoryPathing/D.html"><button>D</button></a>
-          <a href="DirectoryPathing/E.html"><button>E</button></a>
-          <a href="DirectoryPathing/F.html"><button>F</button></a>
-          <a href="DirectoryPathing/G.html"><button>G</button></a>
-          <a href="DirectoryPathing/H.html"><button>H</button></a>
-          <a href="DirectoryPathing/I.html"><button>I</button></a>
-          <a href="DirectoryPathing/J.html"><button>J</button></a>
-          <a href="DirectoryPathing/K.html"><button>K</button></a>
-          <a href="DirectoryPathing/L.html"><button>L</button></a>
-          <a href="DirectoryPathing/M.html"><button>M</button></a>
-          <a href="DirectoryPathing/N.html"><button>N</button></a>
-          <a href="DirectoryPathing/O.html"><button>O</button></a>
-          <a href="DirectoryPathing/P.html"><button>P</button></a>
-          <a href="DirectoryPathing/Q.html"><button>Q</button></a>
-          <a href="DirectoryPathing/R.html"><button>R</button></a>
-          <a href="DirectoryPathing/S.html"><button>S</button></a>
-          <a href="DirectoryPathing/T.html"><button>T</button></a>
-          <a href="DirectoryPathing/U.html"><button>U</button></a>
-          <a href="DirectoryPathing/V.html"><button>V</button></a>
-          <a href="DirectoryPathing/W.html"><button>W</button></a>
-          <a href="DirectoryPathing/X.html"><button>X</button></a>
-          <a href="DirectoryPathing/Y.html"><button>Y</button></a>
-          <a href="DirectoryPathing/Z.html"><button>Z</button></a>
-        </div>
-
-    <div style="margin:center; background-color:green"
-    <table>
-			<tbody>
-        <tr>
-				  <td colspan="2">
-					  <h3>
-						  Some Words or something here
-					  </h3>
-				  </td>
-			  </tr>
-			<tr>
-				<td>
-          <a href="GameDirectory/D/Death_Stranding.html">
-            <img src="images/DeathStranding_Poster_1080.jpg" width="320" height="180", style="float: left; padding: 40px; background-color:#3366cc">
-          </a>
-				</td>
-				<td>
-          <a href="GameDirectory/E/Elden_Ring.html">
-            <img src="images/EldenRing_Poster_1080.jpg" width="320" height="180", style="float: right; padding: 40px; background-color: #224499;">
-          </a>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<img src="images/BIGCHONK.jpg" width="320" height="180">
-				</td>
-				<td>
-					<img src="images/BIGCHONK.jpg" width="320" height="180">
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<img src="images/BIGCHONK.jpg" width="320" height="180">
-				</td>
-				<td>
-					<img src="images/BIGCHONK.jpg" width="320" height="180">
-				</td>
-			</tr>
-		</tbody>
-  </table>
+  <div class="container">
+    <div class="header">
+      <a href="index.html" class="site-title">
+        <h1>HowDoIGetThisAchievement.com</h1>
+      </a>
+      <p class="welcome">
+        It's okay, I gave up looking too, that's why we're here isn't it<br> 
+        lots of spoilers ahead, so proceed at your own risk,
+        you've been warned.
+      </p>
     </div>
+
+    <!-- A-Z Menu Buttons -->
+    <div class="az-menu">
+      <a href="DirectoryPathing/A.html"><button>A</button></a>
+      <a href="DirectoryPathing/B.html"><button>B</button></a>
+      <a href="DirectoryPathing/C.html"><button>C</button></a>
+      <a href="DirectoryPathing/D.html"><button>D</button></a>
+      <a href="DirectoryPathing/E.html"><button>E</button></a>
+      <a href="DirectoryPathing/F.html"><button>F</button></a>
+      <a href="DirectoryPathing/G.html"><button>G</button></a>
+      <a href="DirectoryPathing/H.html"><button>H</button></a>
+      <a href="DirectoryPathing/I.html"><button>I</button></a>
+      <a href="DirectoryPathing/J.html"><button>J</button></a>
+      <a href="DirectoryPathing/K.html"><button>K</button></a>
+      <a href="DirectoryPathing/L.html"><button>L</button></a>
+      <a href="DirectoryPathing/M.html"><button>M</button></a>
+      <a href="DirectoryPathing/N.html"><button>N</button></a>
+      <a href="DirectoryPathing/O.html"><button>O</button></a>
+      <a href="DirectoryPathing/P.html"><button>P</button></a>
+      <a href="DirectoryPathing/Q.html"><button>Q</button></a>
+      <a href="DirectoryPathing/R.html"><button>R</button></a>
+      <a href="DirectoryPathing/S.html"><button>S</button></a>
+      <a href="DirectoryPathing/T.html"><button>T</button></a>
+      <a href="DirectoryPathing/U.html"><button>U</button></a>
+      <a href="DirectoryPathing/V.html"><button>V</button></a>
+      <a href="DirectoryPathing/W.html"><button>W</button></a>
+      <a href="DirectoryPathing/X.html"><button>X</button></a>
+      <a href="DirectoryPathing/Y.html"><button>Y</button></a>
+      <a href="DirectoryPathing/Z.html"><button>Z</button></a>
+      <a href="DirectoryPathing/0-9.html"><button>0-9</button></a>
+    </div>
+
+    <div style="position: relative;">
+      <input type="text" id="search" placeholder="Search for any Game...">
+      <div id="search-results"></div>
+    </div>
+
+    <div class="main-split">
+      <!-- Left: How To Use -->
+      <div class="howto-section">
+        <div class="section-header">How does the website work?</div>
+        <div class="howto-text">
+          <p>- Use the search bar to find your game right away, or click a letter above to browse for a game alphabetically.</p>
+          <p>- Each game page lists all its achievements along with all steps to get them. Includes a checklist as well to help you reach your goals</p>
+          <p>- Click the “Random Game” button below to maybe give a new game a try.</p>
+          <p>- Games added regularly! Check the recently added list for the latest updates.</p>
+        </div>
+      </div>
+
+      <!-- Right: Recently Added -->
+      <div class="recent-section">
+        <div class="section-header">Recently Added Games</div>
+          <ul class="recent-games-list">
+            <li><a href="GameDirectory/D/Death_Stranding.html">Death Stranding</a></li>
+            <li><a href="GameDirectory/E/Elden_Ring.html">Elden Ring</a></li>
+            <li><a href="GameDirectory/H/Hollow_Knight.html"></a></li>
+            <li><a href="GameDirectory/S/Sekiro.html"></a></li>
+            <li><a href="GameDirectory/B/Bloodborne.html"></a></li>
+            <li><a href="GameDirectory/G/Ghost_of_Tsushima.html"></a></li>
+            <li><a href="GameDirectory/H/Hollow_Knight.html"></a></li>
+            <li><a href="GameDirectory/S/Sekiro.html"></a></li>
+            <li><a href="GameDirectory/B/Bloodborne.html"></a></li>
+            <li><a href="GameDirectory/G/Ghost_of_Tsushima.html"></a></li>
+        </ul>
+        <p class="last-updated">Last updated: June 3, 2025</p>
+      </div>
+    </div>
+
+    <!-- Random Button Section at Bottom -->
+    <div class="random-block">
+      <span class="random-label">Looking for a random game to 100%?</span>
+      <button class="random-button" onclick="goToRandomGame()">click here!</button>
+    </div>
+  </div>
+
+  <script>
+    let fuse;
+
+    const searchInput = document.getElementById("search");
+    const resultsDiv = document.getElementById("search-results");
+
+    fetch('searchList.json')
+      .then(res => res.json())
+      .then(data => {
+        fuse = new Fuse(data, {
+          keys: ['name'],
+          threshold: 0.3,
+          includeScore: true
+        });
+      });
+
+    searchInput.addEventListener("input", () => {
+      const query = searchInput.value.trim();
+      resultsDiv.innerHTML = "";
+
+      if (!query || !fuse) return;
+
+      const results = fuse.search(query).slice(0, 5);
+      results.forEach(result => {
+        const game = result.item;
+        const div = document.createElement("div");
+        div.classList.add("search-result");
+        div.textContent = game.name;
+        div.onclick = () => {
+          window.location.href = game.url;
+        };
+        resultsDiv.appendChild(div);
+      });
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!searchInput.contains(e.target) && !resultsDiv.contains(e.target)) {
+        resultsDiv.innerHTML = "";
+      }
+    });
+
+    searchInput.addEventListener("focus", () => {
+      const query = searchInput.value.trim();
+      if (query && fuse) {
+        const results = fuse.search(query).slice(0, 10);
+        resultsDiv.innerHTML = "";
+        results.forEach(result => {
+          const game = result.item;
+          const div = document.createElement("div");
+          div.classList.add("search-result");
+          div.textContent = game.name;
+          div.onclick = () => {
+            window.location.href = game.url;
+          };
+          resultsDiv.appendChild(div);
+        });
+      }
+    });
+
+    function goToRandomGame() {
+      fetch('searchList.json')
+        .then(res => res.json())
+        .then(data => {
+          const random = data[Math.floor(Math.random() * data.length)];
+          if (random?.url) window.location.href = random.url;
+        });
+    }
+  </script>
 </body>
 </html>
