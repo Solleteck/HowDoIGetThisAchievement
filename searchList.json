@@ -10,5 +10,13 @@
   {
     "name": "Counter Strike 2",
     "url": "../GameDirectory/C/Counter_Strike_2.html"
+  },
+  {
+    "name": "Dota 2",
+    "url": "../GameDirectory/D/Dota_2.html"
+  },
+  {
+    "name": "Bongo Cat",
+    "url": "../GameDirectory/B/Bongo_Cat.html"
   }
 ]
