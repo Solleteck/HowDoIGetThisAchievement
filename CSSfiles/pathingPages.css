@@ -31,6 +31,8 @@
     margin-bottom: 20px;
     border: 1px solid #aaa;
     border-radius: 15px;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
 }
 #search-results {
     position: absolute;
