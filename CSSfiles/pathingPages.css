@@ -1,0 +1,71 @@
+                                        /* === WELCOME HEADER === */
+.site-title {
+    text-decoration: none;
+    color: #333;
+}
+
+.site-title h1 {
+    margin: 0;
+    font-size: 26px;
+    font-family: Georgia, serif;
+}
+.welcome {
+    font-size: 12px;
+    color: #555;
+    margin: 0;
+    max-width: 50%;
+    text-align: right;
+    overflow-y: auto;
+}
+                                        /* === LAYOUT: MAIN TITLE=== */
+#main-title {
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-bottom: 10px;
+}
+                                        /* === SEARCH BAR === */
+#search {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 14px;
+    margin-bottom: 20px;
+    border: 1px solid #aaa;
+    border-radius: 15px;
+}
+#search-results {
+    position: absolute;
+    background: #fff;
+    width: calc(100% - 42px);
+    max-height: 200px;
+    overflow-y: auto;
+    border-radius: 10px;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: -18px;
+}
+.search-result {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: blue;
+}
+.search-result:visited {
+    color: purple;
+}
+.search-result:hover {
+    background-color: #eee;
+}
+                                        /* === GAMES LIST=== */
+.game-list li {
+    margin-bottom: 10px;
+}
+.game-list a:link {
+    color: blue;
+    text-decoration: none;
+}
+.game-list a:visited {
+    color: purple;
+}
+.game-list a:hover {
+    text-decoration: underline;
+}

@@ -1,10 +1,10 @@
 [
   {
     "name": "Elden Ring",
-    "url": "GameDirectory/E/Elden_Ring.html"
+    "url": "../GameDirectory/E/Elden_Ring.html"
   },
     {
     "name": "Death Stranding",
-    "url": "GameDirectory/D/Death_Stranding.html"
+    "url": "../GameDirectory/D/Death_Stranding.html"
   }
 ]

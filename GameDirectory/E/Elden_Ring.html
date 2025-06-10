@@ -3,203 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <title>Elden Ring</title>
-  <style>
-body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background: #f9f9f9;
-  color: #111;
-  margin: 0;
-}
-
-.container {
-  max-width: 900px;
-  margin: 20px auto;
-  padding: 20px;
-  background: #fff;
-  border: 1px solid #ccc;
-  border-radius: 15px;
-  box-shadow: 2px 2px 6px rgba(0,0,0,0.05);
-}
-
-.header {
-  border-bottom: 1px solid #ccc;
-  margin-bottom: 20px;
-  padding-bottom: 5px;
-}
-
-.header a {
-  text-decoration: none;
-  color: #333;
-}
-
-.header a:hover {
-  text-decoration: underline;
-}
-
-h1 {
-  margin: 0;
-  font-size: 26px;
-  font-family: Georgia, serif;
-}
-
-.az-menu {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 6px;
-  margin-bottom: 20px;
-}
-
-.az-menu button {
-  background: none;
-  border: 1px solid transparent;
-  padding: 2px 6px;
-  font-size: 14px;
-  color: #3366cc;
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-.az-menu button:hover {
-  background-color: #eef;
-  border-color: #ccd;
-  color: #224499;
-}
-
-#search {
-  width: 100%;
-  padding: 8px;
-  font-size: 14px;
-  margin-bottom: 20px;
-  border: 1px solid #aaa;
-  border-radius: 15px;
-  background-color: #fcfcfc;
-}
-
-.accordion-button {
-  background: #fdfdfd;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  width: 100%;
-  text-align: left;
-  padding: 5px;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-  min-height: 64px;
-  margin-bottom: 6px;
-  transition: background 0.2s;
-}
-
-.accordion-button:hover {
-  background: #f1f1f1;
-}
-
-.arrow {
-  margin-right: 10px;
-  font-size: 12px;
-  transition: transform 0.2s ease;
-  color: #666;
-}
-
-.accordion-button.active .arrow {
-  transform: rotate(90deg);
-}
-
-.regular-button {
-  background: #fdfdfd;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  width: 100%;
-  text-align: left;
-  padding: 5px;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-  min-height: 64px;
-  margin-bottom: 6px;
-  transition: background 0.2s;
-}
-
-.regular-button:hover {
-  background: #f1f1f1;
-}
-
-.ach-icon {
-  width: 64px;
-  height: 64px;
-  margin-right: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #fafafa;
-}
-
-.title {
-  flex-grow: 1;
-  font-weight: bold;
-  color: #222;
-}
-
-.info {
-  flex-grow: 1;
-  font-weight: bold;
-  color: #222;
-  text-align: left;
-}
-
-.checkbox {
-  transform: scale(1.85);
-  cursor: pointer;
-  margin-right: 20px;
-}
-
-.accordion-content {
-  display: none;
-  padding-left: 25px;
-  margin-bottom: 5px;
-  background-color: #fcfcfc;
-  border-left: 2px solid #ddd;
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-.accordion-info {
-  display: none;
-  padding-left: 25px;
-  margin-bottom: 5px;
-  border-left: 2px solid #ddd;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
-.highlight {
-  background-color: orange;
-  font-weight: bold;
-}
-
-.icon-push {
-  margin-left: 20px;
-}
-
-#main-title {
-  text-align: center;
-  font-family: Georgia, serif;
-  color: #222;
-  margin-bottom: 10px;
-}
-  </style>
+  <link rel="stylesheet" href="../../CSSfiles/allPages.css">
+  <link rel="stylesheet" href="../../CSSfiles/gamePages.css">
 </head>
 
 <body>
   <div class="container">
-
-    <!-- Main Menu Button -->
     <div class="header">
-      <a href="../../index.html"><h1>HowDoIGetThisAchievement.com</h1></a>
+      <a href="../../index.html" class="site-title">
+        <h1>HowDoIGetThisAchievement.com</h1>
+      </a>
+      <p class="welcome">
+        It's okay, I gave up looking too, that's why we're here isn't it<br> 
+        lots of spoilers ahead, so proceed at your own risk,
+        you've been warned.
+      </p>
     </div>
 
     <!-- A-Z Menu Buttons -->
@@ -233,7 +51,9 @@ h1 {
       <a href="../../DirectoryPathing/0-9.html"><button>0-9</button></a>
     </div>
 
-    <input type="text" id="search" placeholder="Search achievements...">
+    <div>
+      <input type="text" id="search" placeholder="Search for any Game...">
+    </div>
 
     <div id="main-title"><h1>Elden Ring</h1></div>
 

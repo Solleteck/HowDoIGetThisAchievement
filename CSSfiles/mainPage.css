@@ -1,0 +1,123 @@
+                                        /* === WELCOME HEADER === */
+.site-title {
+    text-decoration: none;
+    color: #333;
+}
+
+.site-title h1 {
+    margin: 0;
+    font-size: 26px;
+    font-family: Georgia, serif;
+}
+.welcome {
+    font-size: 12px;
+    color: #555;
+    margin: 0;
+    max-width: 50%;
+    text-align: right;
+    overflow-y: auto;
+}
+                                        /* === SEARCH BAR === */
+#search {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 14px;
+    margin-bottom: 20px;
+    border: 1px solid #aaa;
+    border-radius: 15px;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+}
+#search-results {
+    position: absolute;
+    background: #fff;
+    width: calc(100% - 42px);
+    max-height: 200px;
+    overflow-y: auto;
+    border-radius: 10px;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: -18px;
+}
+.search-result {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: blue;
+}
+.search-result:visited {
+    color: purple;
+}
+.search-result:hover {
+    background-color: #eee;
+}
+                                        /* === LAYOUT: MAIN SPLIT === */
+.main-split {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+.howto-section,
+.recent-section {
+    flex: 1;
+    min-width: 280px;
+}
+                                        /* === SECTION HEADERS AND HOWTO TEXT === */
+.section-header {
+    font-size: 20px;
+    font-family: Georgia, serif;
+    margin-bottom: 15px;
+    color: #222;
+    text-align: center;
+}
+.howto-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+    padding: 0 10px;
+}
+                                        /* === RECENT GAME LIST === */
+.recent-game-list li {
+    margin-bottom: 10px;
+}
+.recent-game-list a:link {
+    color: blue;
+    text-decoration: none;
+}
+.recent-game-list a:visited {
+    color: purple;
+}
+.recent-game-list a:hover {
+    text-decoration: underline;
+}
+.last-updated {
+    text-align: center;
+    font-size: 12px;
+    color: #999;
+    margin-top: 20px;
+}
+                                        /* === RANDOM BUTTON SECTION === */
+.random-block {
+    text-align: center;
+    margin-top: 30px;
+}
+.random-button {
+    font-size: 14px;
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+.random-button:hover {
+    background-color: #f0f0f0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.random-label {
+    font-size: 13px;
+    color: #555;
+    margin-top: 4px;
+    display: block;
+  }

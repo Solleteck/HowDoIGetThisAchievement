@@ -1,0 +1,111 @@
+                                        /* === WELCOME HEADER === */
+.site-title {
+    text-decoration: none;
+    color: #333;
+}
+
+.site-title h1 {
+    margin: 0;
+    font-size: 26px;
+    font-family: Georgia, serif;
+}
+.welcome {
+    font-size: 12px;
+    color: #555;
+    margin: 0;
+    max-width: 50%;
+    text-align: right;
+    overflow-y: auto;
+}
+                                        /* === LAYOUT: MAIN TITLE=== */
+#main-title {
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-bottom: 10px;
+}
+                                        /* === SEARCH BAR === */
+#search {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 14px;
+    margin-bottom: 20px;
+    border: 1px solid #aaa;
+    border-radius: 15px;
+    background-color: #f9f9f9;
+}
+.highlight {
+  background-color: orange;
+  font-weight: bold;
+}
+                                        /* === ACCORDION BUTTONS === */
+.accordion-button {
+    background: #fdfdfd;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+    text-align: left;
+    padding: 5px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    min-height: 64px;
+    margin-bottom: 6px;
+    transition: background 0.2s;
+}
+.accordion-button:hover {
+    background: #f1f1f1;
+}
+.arrow {
+    margin-right: 10px;
+    font-size: 12px;
+    transition: transform 0.2s ease;
+    color: #666;
+}
+.accordion-button.active .arrow {
+    transform: rotate(90deg);
+}
+.ach-icon {
+    width: 64px;
+    height: 64px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fafafa;
+}
+.title {
+    flex-grow: 1;
+    font-weight: bold;
+    color: #222;
+}
+.info {
+    flex-grow: 1;
+    font-weight: bold;
+    color: #222;
+    text-align: left;
+}
+.checkbox {
+    transform: scale(1.85);
+    cursor: pointer;
+    margin-right: 20px;
+}
+                                        /* === ACCORDION BUTTON CONTENT === */
+.accordion-content {
+    display: none;
+    padding-left: 25px;
+    margin-bottom: 5px;
+    background-color: #fcfcfc;
+    border-left: 2px solid #ddd;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.accordion-info {
+    display: none;
+    padding-left: 25px;
+    margin-bottom: 5px;
+    border-left: 2px solid #ddd;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
