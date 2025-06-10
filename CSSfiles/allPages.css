@@ -5,6 +5,7 @@ body {
     background: #f9f9f9;
     color: #111;
     margin: 0;
+    overflow-y: scroll;
 }
 .container {
     max-width: 900px;
