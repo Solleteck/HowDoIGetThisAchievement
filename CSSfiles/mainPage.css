@@ -7,7 +7,7 @@
 .site-title h1 {
     margin: 0;
     font-size: 26px;
-    font-family: Georgia, serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 .welcome {
     font-size: 12px;
@@ -43,7 +43,7 @@
     padding: 10px;
     cursor: pointer;
     font-size: 14px;
-    color: blue;
+    color: black;
 }
 .search-result:visited {
     color: purple;
@@ -65,7 +65,7 @@
                                         /* === SECTION HEADERS AND HOWTO TEXT === */
 .section-header {
     font-size: 20px;
-    font-family: Georgia, serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     margin-bottom: 15px;
     color: #222;
     text-align: center;
