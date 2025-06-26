@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultsDiv = document.getElementById("search-results");
 
     // === Load search data and initialize Fuse.js ===
-    fetch('../searchList.json')
+    fetch('/searchList.json')
         .then(res => res.json())
         .then(data => {
             searchData = data;
