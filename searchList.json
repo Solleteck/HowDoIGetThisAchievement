@@ -1,26 +1,26 @@
 [
   {
     "name": "Elden Ring",
-    "url": "../GameDirectory/E/Elden_Ring.html"
+    "url": "../Games/E/Elden_Ring.html"
   },
   {
     "name": "Death Stranding",
-    "url": "../GameDirectory/D/Death_Stranding.html"
+    "url": "../Games/D/Death_Stranding.html"
   },
   {
     "name": "Counter Strike 2",
-    "url": "../GameDirectory/C/Counter_Strike_2.html"
+    "url": "../Games/C/Counter_Strike_2.html"
   },
   {
     "name": "Dota 2",
-    "url": "../GameDirectory/D/Dota_2.html"
+    "url": "../Games/D/Dota_2.html"
   },
   {
     "name": "Bongo Cat",
-    "url": "../GameDirectory/B/Bongo_Cat.html"
+    "url": "../Games/B/Bongo_Cat.html"
   },
   {
     "name": "20 Small Mazes",
-    "url": "../GameDirectory/0-9/20_Small_Mazes.html"
+    "url": "../Games/0-9/20_Small_Mazes.html"
   }
 ]
